@@ -1,13 +1,17 @@
-while True:
-    fuels = ["Diesel", "Benzine"]
-    print(" Welkom, gelieve keuze te maken")
-    print("1. Voertuig toevoegen.")
-    print("2. Voertuigen afprinten.")
-    print("3. Afsluiten")
-    number = input()
+vehicles = []
+message = """Welkom, gelieve keuze te maken"
+1. Voertuig toevoegen.
+2. Voertuigen afprinten.
+3. Opslaan
+3. Afsluiten
+>"""
+fuels = ["Diesel", "Benzine"]
 
-    if number == "1":
-        print("Geeft details van auto:")
+while True:
+    choice = input(message)
+
+    if choice == "1":
+        print("Geeft details van auto:2")
     
         while True:
             brand = input("Geef merk: ")
@@ -22,30 +26,31 @@ while True:
             print("Geen kleur ingevuld.")
         
         while True:
-            fuel = input("Geef brandstof 1 voor")
+            fuel = input("Geef brandstof 1 voor Diesel, 2 voor Benzine: ")
             if fuel.isnumeric():
                 if int(fuel) <= len(fuels) and int(fuel) > 0:
                     fuel = fuels[(int(fuel)-1)]
                     break
                 else:
-                    print("Geef een correcte optie")
+                    print("Geef een correcte optie.")
             else:
                 print("Geef een getal.")
         
         while True:
-            kw = input("Wat is de KW?")
+            kw = input("Geef KW: ")
             if kw.isdigit():
                 break
             print("U heeft geen nummer ingegeven,")
             
-        with open("auto.csv", "a") as file:
-            file.write("{},{},{},{}\n".format(brand, colour, fuel, kw))
-    elif number == "2":      
-        with open("auto.csv", "r") as file:
-            for line in file:
-                for word in line.split(","):
-                        print(word)
-    elif number == "3":
+        vehicles.append([brand, colour, fuel, kw])
+    elif choice == "2":
+        for vehicle in vehicles:
+            print("{0}, kleur = {1}, brandstof = {2}, KW = {3}".format(vehicle[0],vehicle[1],vehicle[2],vehicle[3]))
+    elif choice == "3":
+        pass
+    elif choice == "4":
         break
     else:
         print("Invoer niet herkent. Probeer opnieuw")
+
+print("Programma is gesloten.")

@@ -1,15 +1,39 @@
 months = [31,28,31,30,31,30,31,31,30,31,30,31]
 
 def get_days_of_month(number):
-    return months[(number-1)]
+    if int(number) > 12 or int(number) <= 0:
+        return 0
+    else:
+        return months[(number-1)]
 
 def days_from_start_year(number):
+    if int(number) > 12 or int(number) <= 0:
+        return 0
+    else:
+        total = 0
+        for month in months[0:(number)]:
+            total = total + month
+        return total
+
 
 def days_until_end_year(number):
+    if int(number) > 12 or int(number) <= 0:
+        return 0
+    else:
+        total = 0
+        for month in months[0:(number)]:
+            total = total + month
+        return total
 
-def days_between_months(number):
-    
-    
+
+def days_between_months(number, number2):
+    if int(number) > 12 or int(number) <= 0:
+        return 0
+    else:
+        total = 0
+        for month in months[0:(number)]:
+            total = total + month
+        return total
 
 
 print(get_days_of_month(1))  # prints 31
