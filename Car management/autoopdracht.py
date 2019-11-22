@@ -1,11 +1,21 @@
+class classname(object):
+    pass
+
+file_name = "auto.csv"
+token  = ","
 vehicles = []
 message = """Welkom, gelieve keuze te maken"
 1. Voertuig toevoegen.
 2. Voertuigen afprinten.
 3. Opslaan
-3. Afsluiten
+4. Afsluiten
 >"""
 fuels = ["Diesel", "Benzine"]
+
+with open(file_name) as csv_file:
+    for line in csv_file:
+        vehicle = line.strip().split(token)
+        vehicles.append(vehicle)
 
 while True:
     choice = input(message)
@@ -46,8 +56,11 @@ while True:
     elif choice == "2":
         for vehicle in vehicles:
             print("{0}, kleur = {1}, brandstof = {2}, KW = {3}".format(vehicle[0],vehicle[1],vehicle[2],vehicle[3]))
+   
     elif choice == "3":
-        pass
+        with open(file_name, "w") as file:
+            for vehicle in vehicles:
+                file.write("{},{},{},{}\n".format(vehicle[0],vehicle[1],vehicle[2],vehicle[3]))
     elif choice == "4":
         break
     else:
